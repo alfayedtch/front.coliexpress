@@ -12,7 +12,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@main
       - name: Install node dependencies
-        run: npm i
+        run: npm install -d ./www
       - name: build
         run: npm build --prod
       - name: Archive production artifact
