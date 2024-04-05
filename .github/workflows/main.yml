@@ -29,7 +29,7 @@ jobs:
       - name: Install ionic/cli dependencies
         run: npm i @ionic/cli -d ./www
       - name: Install ionic dependencies
-        run: ionic new www blank
+        run: ionic new www blank -d ./www
       - name: Prepare angular Application
         run: |
           cd www
