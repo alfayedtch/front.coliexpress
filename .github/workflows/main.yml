@@ -13,8 +13,10 @@ jobs:
         uses: actions/checkout@main
       - name: Install node dependencies
         run: npm install -d ./www
+      - name: Install ionic
+        run: npm install ionic@cli -d ./www
       - name: build
-        run: npm run build
+        run: ionic build -d ./www
       - name: Archive production artifact
         uses: actions/upload-artifact@main
         with:
