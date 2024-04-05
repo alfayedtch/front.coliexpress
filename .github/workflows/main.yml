@@ -14,7 +14,7 @@ jobs:
       - name: Install node dependencies
         run: npm install -d ./www
       - name: build
-        run: npm build -d ./www 
+        run: npm run build -d ./www 
       - name: Archive production artifact
         uses: actions/upload-artifact@main
         with:
