@@ -26,7 +26,7 @@ jobs:
           coverage: xdebug
       - name: Install Composer dependencies
         run: composer install --no-interaction --no-progress --prefer-dist --optimize-autoloader -d ./www
-      - name: Prepare Laravel Application
+      - name: Prepare angular Application
         run: |
           cp www/.env.prod www/.env
           cd www
