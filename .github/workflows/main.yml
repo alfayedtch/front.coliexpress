@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Project - Install dependencies
-        run: npm ci -d ./www
+        run: npm install -d ./www
 
       - name: Project - Build
         run: npm run build-dev
