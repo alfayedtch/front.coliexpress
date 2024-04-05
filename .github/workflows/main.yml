@@ -11,29 +11,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@main
-      # - name: Cache composer dependencies
-      #   uses: actions/cache@v2
-      #   with:
-      #       path: www/vendor
-      #       key: composer-${{ hashFiles('**/composer.lock') }}
-      #       restore-keys: |
-      #           composer-
-      # - name: Setup PHP, with composer and extensions
-      #   uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
-      #   with:
-      #     php-version: '8.2'
-      #     extensions: mbstring, bcmath
-      #     coverage: xdebug
       - name: Install node dependencies
-        run: npm i -d ./www
-      - name: Install ionic/cli dependencies
-        run: npm i @ionic/cli -d ./www
-      - name: Install ionic dependencies
-        run: ionic new www blank -d ./www
-      - name: Prepare angular Application
-        run: |
-          cd www
-          ionic build --prod
+        run: npm i
+      - name: build
+        run: npm build --prod
       - name: Archive production artifact
         uses: actions/upload-artifact@main
         with:
