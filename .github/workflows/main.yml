@@ -4,17 +4,30 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# On configure l'environnement des outils qui seront utilisés lors de l'execution de notre tâche
+env:
+  NODE_VERSION: 16.x
+  JAVA_VERSION: 11.0.10
+
 jobs:
   build:
     name: Build ⛏
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@main
-      - name: Install node dependencies
-        run: npm install -d ./www
-      - name: build
+      - name: Config - Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Project - Install dependencies
+        run: npm ci
+
+      - name: Project - Build
         run: npm run build-dev
+        
       - name: Archive production artifact
         uses: actions/upload-artifact@main
         with:
