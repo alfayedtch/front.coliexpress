@@ -26,6 +26,8 @@ jobs:
       #     coverage: xdebug
       - name: Install node dependencies
         run: npm i -d ./www
+      - name: Install ionic/cli dependencies
+        run: npm i @ionic/cli -d ./www
       - name: Prepare angular Application
         run: |
           cd www
