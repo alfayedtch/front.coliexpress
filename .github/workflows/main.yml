@@ -26,7 +26,7 @@ jobs:
       - name: Archive production artifact
         uses: actions/upload-artifact@main
         with:
-          name: build
+          name: deploiement
           path: ./www/www
   deploy:
     name: Deploy 🚀
@@ -38,7 +38,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@main
         with: 
-          name: build
+          name: deploiement
           path: ${{ vars.WORK_DIR }}
       - name: Sync files to hosting
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
