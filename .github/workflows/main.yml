@@ -13,10 +13,10 @@ jobs:
     name: Build ⛏
     runs-on: ubuntu-latest
     steps:
-      - name: Config - Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+      # - name: Config - Use Node.js ${{ env.NODE_VERSION }}
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: ${{ env.NODE_VERSION }}
 
       - name: Checkout
         uses: actions/checkout@v2
