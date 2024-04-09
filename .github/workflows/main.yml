@@ -43,7 +43,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@main
         with: 
-          name: dist
+          name: build
           path: ${{ vars.WORK_DIR }}
       - name: Sync files to hosting
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
