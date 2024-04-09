@@ -6,8 +6,7 @@ on:
 
 # On configure l'environnement des outils qui seront utilisés lors de l'execution de notre tâche
 env:
-  NODE_VERSION: 16.x
-  JAVA_VERSION: 11.0.10
+  NODE_VERSION: 20.x
 
 jobs:
   build:
