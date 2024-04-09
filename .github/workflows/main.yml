@@ -25,7 +25,8 @@ jobs:
         run: npm install @angular/cli -d ./www
 
       - name: Project - Build
-        run: ng build -d ./www
+        working-directory: ./www
+        run: npm run build -d ./www
         
       - name: Archive production artifact
         uses: actions/upload-artifact@main
