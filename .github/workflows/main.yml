@@ -21,13 +21,13 @@ jobs:
 
       - name: Project - Build
         working-directory: ./www
-        run: ng build --prod
+        run: npm run build
         
       - name: Archive production artifact
         uses: actions/upload-artifact@main
         with:
           name: deploiement
-          path: ./www/www
+          path: ./www/dist/wwww
   deploy:
     name: Deploy 🚀
     needs: build
