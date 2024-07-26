@@ -21,7 +21,7 @@ jobs:
 
       - name: Project - Build
         working-directory: ./www
-        run: npm run build
+        run: ng build --prod
         
       - name: Archive production artifact
         uses: actions/upload-artifact@main
