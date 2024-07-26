@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: deploiement
-          path: ./www
+          path: ./www/www
   deploy:
     name: Deploy 🚀
     needs: build
