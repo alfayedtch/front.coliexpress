@@ -31,9 +31,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["src/scripts.js"]
           },
           "configurations": {
             "production": {
@@ -99,9 +100,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/styles.css"
+
             ],
-            "scripts": []
+            "scripts": ["src/scripts.js"]
           }
         }
       }
