@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: deploiement
-          path: ./www/dist/www
+          path: ./www/dist/www/browser
   deploy:
     name: Deploy 🚀
     needs: build
