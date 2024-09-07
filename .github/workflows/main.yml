@@ -20,7 +20,7 @@ jobs:
         run: npm install @angular/cli -d ./www
 
       - name: Project - Install primeng
-        run: npm install primeng
+        run: npm install primeng -d ./www
 
       - name: Project - Build
         working-directory: ./www
