@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apuUrl : 'https://api.translate.2hfan.org/api'
 };
