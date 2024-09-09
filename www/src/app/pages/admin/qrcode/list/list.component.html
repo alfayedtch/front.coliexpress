@@ -1,0 +1,19 @@
+<p-table [value]="qrcodes" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Nom</th>
+          <th>donné</th>
+          <th>qrcode</th>
+          <th>Action</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-qrcode>
+      <tr>
+          <td>{{ qrcode.name }}</td>
+          <td>{{ qrcode.data }}</td>
+          <td><app-qrcode-image [qrcodeData]=qrcode.qrcode_access [qrcodeImage]=qrcode.logo_image></app-qrcode-image></td>
+          <td><button (click)="goToEdit(qrcode)" class="btn btn-primary"><i class="fas fa-eye"></i>Afficher</button> </td>
+
+      </tr>
+  </ng-template>
+</p-table>
