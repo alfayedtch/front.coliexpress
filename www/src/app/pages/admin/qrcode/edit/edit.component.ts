@@ -24,6 +24,9 @@ export class EditComponent implements OnInit,OnDestroy {
     const state = navigation?.extras.state;
     console.log(state);
     this.qrcode = (state)?state['qrcode']:null;
+    if(this.qrcode === null){
+      this.router.navigateByUrl('/admin/qrcode');
+    }
   }
   ngOnDestroy(): void {
   }
