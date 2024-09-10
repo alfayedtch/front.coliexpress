@@ -21,6 +21,6 @@ export class QrcodeService {
   }
 
   updateQrcode(form:any){
-    return this.httpClient.post(this.endpoint+'/qrcode/update/',form);
+    return this.httpClient.post(this.endpoint+'/qrcode/update',form);
   }
 }
