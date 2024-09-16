@@ -33,11 +33,12 @@
 
             ],
             "scripts": [
-              "src/scripts.js",
               "src/vendor/jquery/jquery.min.js",
               "src/vendor/bootstrap/js/bootstrap.bundle.min.js",
               "src/vendor/jquery-easing/jquery.easing.min.js",
-              "src/js/sb-admin-2.min.js"
+              "src/js/sb-admin-2.min.js",
+              "src/scripts.js"
+
             ]
           },
           "configurations": {
@@ -99,11 +100,11 @@
               "src/css/sb-admin-2.min.css"
             ],
             "scripts": [
-              "src/script.js",
               "src/vendor/jquery/jquery.min.js",
               "src/vendor/bootstrap/js/bootstrap.bundle.min.js",
               "src/vendor/jquery-easing/jquery.easing.min.js",
-              "src/js/sb-admin-2.min.js"
+              "src/js/sb-admin-2.min.js",
+              "src/script.js"
             ]
           }
         }

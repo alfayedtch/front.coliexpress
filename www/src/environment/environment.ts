@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  endpoint:'https://www.api.qrcode.2hfan.org/api'
+  endpoint:'http://localhost:8000/api'
 };

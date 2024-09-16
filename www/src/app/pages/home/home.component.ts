@@ -20,7 +20,7 @@ export class HomeComponent {
     this.router.navigateByUrl('login');
   }
 
-  goToQrcode(){
+  goToAdmin(){
     this.router.navigateByUrl('admin/qrcode');
   }
 

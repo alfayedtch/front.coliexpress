@@ -14,7 +14,7 @@
                           <form class="user" [formGroup]="form" >
                               <div class="form-group row">
                                   <div class="col-sm-6 mb-3 mb-sm-0">
-                                      <input formControlName="name" type="text" class="form-control form-control-user" id="exampleFirstName"
+                                      <input formControlName="firstname" type="text" class="form-control form-control-user" id="exampleFirstName"
                                           placeholder="First Name">
                                   </div>
                                   <div class="col-sm-6">
@@ -26,6 +26,10 @@
                                   <input formControlName="email" type="email" class="form-control form-control-user" id="exampleInputEmail"
                                       placeholder="Email Address">
                               </div>
+                              <div class="form-group">
+                                <input formControlName="birthdate" type="date" class="form-control form-control-user"
+                                    placeholder="Birthday">
+                            </div>
                               <div class="form-group row">
                                   <div class="col-sm-6 mb-3 mb-sm-0">
                                       <input formControlName="password" type="password" class="form-control form-control-user"
@@ -39,6 +43,20 @@
                               <a (click)="register()" class="btn btn-primary btn-user btn-block">
                                   Register Account
                               </a>
+
+                              <ng-container *ngIf="loading">
+                                <div class="d-flex justify-content-center">
+                                  <p-progressSpinner ariaLabel="loading" />
+                                </div>
+                              </ng-container>
+                              <ng-container *ngIf="isConnected" >
+                                <div class="d-flex justify-content-center alert alert-danger" role="alert">
+                                  Erreur dans l'inscription
+                                </div>
+                              </ng-container>
+
+
+
                               <!-- <hr>
                               <a href="index.html" class="btn btn-google btn-user btn-block">
                                   <i class="fab fa-google fa-fw"></i> Register with Google

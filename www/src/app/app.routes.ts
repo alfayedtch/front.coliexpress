@@ -7,6 +7,9 @@ import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-pas
 import { ListComponent } from './pages/admin/qrcode/list/list.component';
 import { CreateComponent } from './pages/admin/qrcode/create/create.component';
 import { EditComponent } from './pages/admin/qrcode/edit/edit.component';
+import { authGuard } from './guards/auth/auth.guard';
+import { connectedGuard } from './guards/auth/connected.guard';
+import { ProfileComponent } from './pages/admin/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -15,6 +18,7 @@ export const routes: Routes = [
   },
   {
     path:'login',
+    canActivate: [connectedGuard],
     component: LoginComponent
   },
   {
@@ -27,11 +31,12 @@ export const routes: Routes = [
   },
   {
     path:'admin',
+    canActivate: [authGuard],
     component: SideComponent,
     children:[
       {
         path: 'qrcode',
-        component:ListComponent
+        component:ListComponent,
       },
       {
         path: 'qrcode/create',
@@ -40,6 +45,11 @@ export const routes: Routes = [
       {
         path: 'qrcode/edit',
         component:EditComponent
+      },
+
+      {
+        path: 'profile',
+        component:ProfileComponent
       },
       {
         path:"**",

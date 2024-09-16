@@ -1,28 +1,41 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [FormsModule, ReactiveFormsModule,ProgressSpinnerModule,CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  email ='';
-  password ='';
+  loading = false;
+  hasWrongCredentials = false;
+  form: FormGroup = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl('')
+  });
 
   constructor(
     private authService: AuthService,
     private router: Router
   ){
-
   }
   login(){
-    this.authService.login(this.email,this.password).subscribe(
-      response => { },
-      err => { }
+    this.loading = true
+    this.authService.login(this.form.value).subscribe(
+      response => {
+        this.router.navigateByUrl('admin');
+       },
+      err => {
+        console.log('er',err);
+        this.loading = false;
+        this.hasWrongCredentials = true;
+      }
     )
   }
 
