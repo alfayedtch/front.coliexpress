@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { SideComponent } from './pages/layout/side/side.component';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './pages/custum/home/home.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { ListComponent } from './pages/admin/qrcode/list/list.component';
@@ -10,12 +10,9 @@ import { EditComponent } from './pages/admin/qrcode/edit/edit.component';
 import { authGuard } from './guards/auth/auth.guard';
 import { connectedGuard } from './guards/auth/connected.guard';
 import { ProfileComponent } from './pages/admin/profile/profile.component';
+import { NavComponent } from './pages/layout/nav/nav.component';
 
 export const routes: Routes = [
-  {
-    path:'home',
-    component: HomeComponent
-  },
   {
     path:'login',
     canActivate: [connectedGuard],
@@ -29,6 +26,24 @@ export const routes: Routes = [
     path:'forgot-password',
     component: ForgotPasswordComponent
   },
+
+  //custum route
+  {
+    path:'custum',
+    component: NavComponent,
+    children:[
+      {
+        path: 'home',
+        component: HomeComponent
+      },
+      {
+        path:"**",
+        redirectTo: "home"
+      }
+    ]
+  },
+
+  //admin route
   {
     path:'admin',
     canActivate: [authGuard],
@@ -59,6 +74,6 @@ export const routes: Routes = [
   },
   {
     path:"**",
-    redirectTo: "home"
+    redirectTo: "/custum/home"
   }
 ];
