@@ -12,7 +12,7 @@ import { User } from '../../../interfaces/user';
   styleUrl: './side.component.css'
 })
 export class SideComponent implements OnInit {
-  user! : User;
+  user! : User | null;
   page =  {
     title: "Mes qrcode",
     route: "/admin/qrcode"
@@ -45,7 +45,9 @@ export class SideComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getUserByToken().subscribe(
       (response: any) => {this.user = response.user},
-      err => {}
+      err => {
+        this.logout();
+      }
     );
   }
 
@@ -56,6 +58,7 @@ export class SideComponent implements OnInit {
 
   logout(){
     this.authService.logout();
+    this.user = null;
     this.router.navigateByUrl('login');
   }
 }
