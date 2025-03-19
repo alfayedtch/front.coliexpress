@@ -1,19 +1,31 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../environment/environment';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  if(req.url.includes('login') || req.url.includes('register') ){
-
-  }else{
-    console.log('not include',req.url);
+  function isRouteInArray(array: any[], url: any, method: any) {
+    return array.some(item => item.url === url && item.method === method);
+}
+  const endpoint = environment.endpoint;
+  const urlsToNotUse = [
+    { url: endpoint + '/login', method: 'POST' },
+    { url: endpoint + '/register', method: 'POST'  },
+    { url: endpoint + '/station', method: 'GET'  },
+    { url: endpoint + '/trip/search', method: 'POST'  },
+  ];
+  // console.log(req.url);
+  // console.log(req.method);
+  // console.log(urlsToNotUse);
+  // console.log(isRouteInArray(urlsToNotUse,req.url,req.method))
+  if (isRouteInArray(urlsToNotUse,req.url,req.method)) {
+  } else {
     req = req.clone({
-    headers: req.headers.set(
-      'Authorization',
-      'Bearer ' + JSON.parse(localStorage.getItem('access_token') || ''))}
-    );
+      headers: req.headers.set(
+        'Authorization',
+        'Bearer ' + JSON.parse(localStorage.getItem('access_token') || '')
+      ),
+    });
   }
   return next(req);
 };
-
-
