@@ -15,16 +15,15 @@ import { NavComponent } from './pages/layout/nav/nav.component';
 export const routes: Routes = [
   {
     path:'login',
-    canActivate: [connectedGuard],
-    component: LoginComponent
+    redirectTo:'custum/login'
   },
   {
     path:'register',
-    component: RegisterComponent
+    redirectTo:'custum/register'
   },
   {
     path:'forgot-password',
-    component: ForgotPasswordComponent
+    redirectTo:'custum/forgot-password'
   },
 
   //custum route
@@ -35,6 +34,19 @@ export const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent
+      },
+      {
+        path:'login',
+        canActivate: [connectedGuard],
+        component: LoginComponent
+      },
+      {
+        path:'register',
+        component: RegisterComponent
+      },
+      {
+        path:'forgot-password',
+        component: ForgotPasswordComponent
       },
       {
         path:"**",

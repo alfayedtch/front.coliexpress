@@ -9,25 +9,25 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#about">À propos</a></li>
-                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">À propos</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/service" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Services</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Contact</a></li>
                 @if (user) {
                   <li class="nav-item dropdown ml-5">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="d-none d-lg-inline text-gray-600 small">{{ user.firstname }} {{ user.lastname }}</span>
+                        <span class="d-none d-lg-inline text-gray-600 ">{{ user.firstname }} {{ user.lastname }}</span>
                         <img class="img-profile rounded-circle ml-2" [src]=" user.profile_picture" height="30">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li><a class="dropdown-item" href="#">Profil</a></li>
                         <li><a class="dropdown-item" href="#">Paramètres</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" routerlink="/login">Déconnexion</a></li>
+                        <li><a class="dropdown-item" (click)="logout()">Déconnexion</a></li>
                     </ul>
                 </li>
                 }@else {
                   <li class="nav-item ml-5"><a class="nav-link" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                    <span class="d-none d-lg-inline text-gray-600 small">Mon compte</span>
+                    <span class="d-none d-lg-inline text-gray-600 ">Mon compte</span>
                     <img class="img-profile rounded-circle ml-2" src="profile.png" height="30">
                 </a></li>
                 }

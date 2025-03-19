@@ -12,7 +12,7 @@ import { User } from '../../../interfaces/user';
   styleUrl: './nav.component.css',
 })
 export class NavComponent implements OnInit {
-  user! : User;
+  user! : User | null;
   page =  {
     title: "Mes qrcode",
     route: "/admin/qrcode"
@@ -45,7 +45,9 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getUserByToken().subscribe(
       (response: any) => {this.user = response.user},
-      err => {}
+      err => {
+        this.logout();
+      }
     );
   }
 
@@ -56,6 +58,7 @@ export class NavComponent implements OnInit {
 
   logout(){
     this.authService.logout();
-    this.router.navigateByUrl('login');
+    this.user = null;
+    this.router.navigateByUrl('home');
   }
 }
