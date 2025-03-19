@@ -64,6 +64,10 @@ export class AuthService {
     );
   }
 
+  submitForgotPassword(emailToForgotPassword: any){
+    return this.httpClient.post(this.endpoint + '/forgot-password', emailToForgotPassword);
+  }
+
   update(update: any) {
     return this.httpClient.post(this.endpoint + '/user/update', update);
   }

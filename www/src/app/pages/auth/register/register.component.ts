@@ -36,7 +36,6 @@ export class RegisterComponent {
     this.loading =  true;
     this.authService.register(this.form.value).subscribe(
       () => {
-        console.log('fayed')
         this.router.navigateByUrl('login');
        },
       err => {

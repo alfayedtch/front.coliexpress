@@ -11,8 +11,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const urlsToNotUse = [
     { url: endpoint + '/login', method: 'POST' },
     { url: endpoint + '/register', method: 'POST'  },
-    { url: endpoint + '/station', method: 'GET'  },
-    { url: endpoint + '/trip/search', method: 'POST'  },
+    { url: endpoint + '/forgot-password', method: 'POST'  },
   ];
   // console.log(req.url);
   // console.log(req.method);
