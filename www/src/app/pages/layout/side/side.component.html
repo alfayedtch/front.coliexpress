@@ -6,30 +6,54 @@
       <!-- Sidebar -->
       <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-          <!-- Sidebar - Brand -->
-          <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-              <div class="sidebar-brand-icon rotate-n-15">
-                  <i class="fas fa-cog"></i>
-              </div>
-              <div class="sidebar-brand-text mx-3">Admin</div>
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+          <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-cog"></i>
+          </div>
+          <div class="sidebar-brand-text mx-3">Admin</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+          Interface
+        </div>
+
+        <!-- Menu principal -->
+        <li class="nav-item" *ngFor="let menu of menus">
+          <a class="nav-link" (click)="toggleMenu(menu)" [class.collapsed]="!menu.isExpanded" data-toggle="collapse">
+            <i class="fas fa-fw fa-table"></i>
+            <span [routerLink]="menu.route">{{ menu.title }}</span>
           </a>
 
-          <!-- Divider -->
-          <hr class="sidebar-divider my-0">
+          <!-- Sous-menus -->
+          <div [ngClass]="{'collapse': !menu.isExpanded, 'collapse-menu': true}">
+            <ul class="navbar-nav ml-3">
+              <li class="nav-item" *ngFor="let child of menu.children">
+                <a [routerLink]="child.route" class="nav-link small" (click)="toggleMenu(child)">
+                  {{ child.title }}<i *ngIf="child.children.length > 0" class="fas fa-angle-right ml-2"></i>
+                </a>
 
-          <!-- Heading -->
-          <div class="sidebar-heading">
-              Interface
+                <!-- Sous-sous-menus -->
+                <div [ngClass]="{'collapse': !child.isExpanded, 'collapse-menu': true}">
+                  <ul class="navbar-nav ml-4">
+                    <li class="nav-item" *ngFor="let subChild of child.children">
+                      <a [routerLink]="subChild.route" class="nav-link small" (click)="toggleMenu(subChild)">
+                        {{ subChild.title }}<i  *ngIf="subChild.children > 0" class="fas fa-angle-right ml-2"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
           </div>
-
-          <!-- Nav Item - Tables -->
-          <li class="nav-item" *ngFor="let menu of menus">
-              <a class="nav-link" >
-                  <i class="fas fa-fw fa-table"></i>
-                  <span (click)="goTo(menu)">{{ menu.title }}</span></a>
-          </li>
+        </li>
 
       </ul>
+
       <!-- End of Sidebar -->
 
       <!-- Content Wrapper -->
@@ -242,7 +266,7 @@
 
                   <!-- Page Heading -->
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                      <h1 class="h3 mb-0 text-gray-800">{{ page!.title }}</h1>
+                      <!-- <h1 class="h3 mb-0 text-gray-800">{{ page!.title }}</h1> -->
                   </div>
 
                   <div class="row">

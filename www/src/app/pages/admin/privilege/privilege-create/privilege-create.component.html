@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+      <!-- Nested Row within Card Body -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="p-5">
+            <div class="text-center">
+              <h1 class="h4 text-gray-900 mb-4">Creer un privilege!</h1>
+            </div>
+            <form class="user" [formGroup]="privilegeForm" (ngSubmit)="createPrivilege()">
+
+              <!-- Champ Libelle -->
+              <div class="form-group">
+                <input formControlName="libelle" type="text" class="form-control form-control-user" placeholder="Nom du privilege">
+                <div *ngIf="privilegeForm.controls['libelle'].invalid && (privilegeForm.controls['libelle'].dirty || privilegeForm.controls['libelle'].touched)" class="text-danger small">
+                  <span *ngIf="privilegeForm.controls['libelle'].errors?.['required']">Ce champ est requis.</span>
+                  <span *ngIf="privilegeForm.controls['libelle'].errors?.['minlength']">Minimum 3 caractères.</span>
+                </div>
+              </div>
+
+              <!-- Champ Code -->
+              <div class="form-group">
+                <input formControlName="code" type="text" class="form-control form-control-user" placeholder="Code du privilege">
+                <div *ngIf="privilegeForm.controls['code'].invalid && (privilegeForm.controls['code'].dirty || privilegeForm.controls['code'].touched)" class="text-danger small">
+                  <span *ngIf="privilegeForm.controls['code'].errors?.['required']">Ce champ est requis.</span>
+                  <span *ngIf="privilegeForm.controls['code'].errors?.['pattern']">Doit contenir uniquement des majuscules et des chiffres.</span>
+                </div>
+              </div>
+
+              <!-- Bouton de soumission -->
+              <button type="submit" class="btn btn-primary btn-user btn-block" [disabled]="privilegeForm.invalid">
+                creer un privilege
+              </button>
+              <ng-container *ngIf="loading">
+                <div class="d-flex justify-content-center">
+                  <p-progressSpinner ariaLabel="loading" />
+                </div>
+              </ng-container>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

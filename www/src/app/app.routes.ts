@@ -80,25 +80,24 @@ export const routes: Routes = [
     component: SideComponent,
     children:[
       {
-        path: 'qrcode',
-        component:ListComponent,
+        path: 'role',
+        loadChildren: () => import('./pages/admin/role/role.routes').then(m => m.routes)
       },
       {
-        path: 'qrcode/create',
-        component:CreateComponent
+        path: 'user',
+        loadChildren: () => import('./pages/admin/user/user.routes').then(m => m.routes)
       },
       {
-        path: 'qrcode/edit',
-        component:EditComponent
+        path: 'privilege',
+        loadChildren: () => import('./pages/admin/privilege/privilege.routes').then(m => m.routes)
       },
-
       {
         path: 'profile',
         component:ProfileComponent
       },
       {
         path:"**",
-        redirectTo: "qrcode"
+        redirectTo: "role"
       }
     ]
   },
