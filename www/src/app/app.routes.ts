@@ -11,6 +11,9 @@ import { authGuard } from './guards/auth/auth.guard';
 import { connectedGuard } from './guards/auth/connected.guard';
 import { ProfileComponent } from './pages/admin/profile/profile.component';
 import { NavComponent } from './pages/layout/nav/nav.component';
+import { AboutComponent } from './pages/custum/about/about.component';
+import { ContactComponent } from './pages/custum/contact/contact.component';
+import { ServiceComponent } from './pages/custum/service/service.component';
 
 export const routes: Routes = [
   {
@@ -31,10 +34,25 @@ export const routes: Routes = [
     path:'custum',
     component: NavComponent,
     children:[
+      //public route
       {
         path: 'home',
         component: HomeComponent
       },
+      {
+        path: 'about',
+        component: AboutComponent
+      },
+      {
+        path: 'service',
+        component: ServiceComponent
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
+      },
+
+      //Auth routes
       {
         path:'login',
         canActivate: [connectedGuard],

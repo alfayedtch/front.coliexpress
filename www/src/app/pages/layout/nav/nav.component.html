@@ -9,9 +9,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">À propos</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="/service" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Services</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/custum/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">À propos</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/custum/service" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Services</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/custum/contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Contact</a></li>
                 @if (user) {
                   <li class="nav-item dropdown ml-5">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -41,5 +41,19 @@
     <router-outlet></router-outlet>
 
   </div>
+   <!-- Contact Section -->
+   <section id="contact" class="content-section text-center">
+    <div class="container">
+        <h2>Contactez-nous</h2>
+        <p>Envoyez-nous un message pour en savoir plus.</p>
+        <a routerLink="/custum/contact" fragment="contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="btn btn-dark">Nous Contacter</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; 2025 - Tous droits réservés.</p>
+</footer>
+
 </body>
 
