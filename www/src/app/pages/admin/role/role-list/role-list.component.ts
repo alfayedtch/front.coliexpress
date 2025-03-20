@@ -13,6 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { PrivilegeConcatPipe } from '../../../../pipe/privilegeConcat/privilege-concat.pipe';
 import { Privilege } from '../../../../interfaces/privilege';
 import { PrivilegeService } from '../../../../services/privilege/privilege.service';
+import { mergeMap } from 'rxjs';
 
 @Component({
   selector: 'app-role-list',
@@ -60,23 +61,45 @@ export class RoleListComponent implements OnInit {
     this.clonedRoles[role.id as unknown as string] = { ...role };
 }
 
-onRowEditSave(role: Role) {
-    if (role.code) {
-        delete this.clonedRoles[role.id as unknown as string];
-        this.roleService.updateRole(role).subscribe(
-          (response:any)=>{
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Role mis à jour' });
+// onRowEditSave(role: Role) {
+//     if (role.code) {
+//         delete this.clonedRoles[role.id as unknown as string];
+//         this.roleService.updateRole(role).subscribe(
+//           (response:any)=>{
+//             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Role mis à jour' });
 
-          },
-          (err)=>{
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Erreur dans la mise à jour. Veuillez rééssayer' });
-          },
-          ()=>{},
-        );
-    } else {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Erreur dans la mise à jour. Veuillez rééssayer' });
-    }
+//           },
+//           (err)=>{
+//             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Erreur dans la mise à jour. Veuillez rééssayer' });
+//           },
+//           ()=>{},
+//         );
+//         this.initRoles(); // Aretirer apres et utiliser un mergeMap
+//     } else {
+//         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Erreur dans la mise à jour. Veuillez rééssayer' });
+//     }
+// }
+
+onRowEditSave(role: Role) {
+  if (role.code) {
+    delete this.clonedRoles[role.id as unknown as string];
+
+    this.roleService.updateRole(role).pipe(
+      mergeMap(() => this.roleService.getRoles()) // Enchaîne directement la récupération des rôles
+    ).subscribe(
+      (response: any) => {
+        this.roles = <Role[]>response.roles;
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Role mis à jour' });
+      },
+      (err) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Erreur dans la mise à jour. Veuillez réessayer' });
+      }
+    );
+  } else {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Erreur dans la mise à jour. Veuillez réessayer' });
+  }
 }
+
 
 onRowEditCancel(role: Role, index: number) {
     this.roles[index] = this.clonedRoles[role.id as unknown as string];
