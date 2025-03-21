@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
 import { User } from '../../../interfaces/user';
+import { environment } from '../../../../environment/environment';
 
 @Component({
   selector: 'app-nav',
@@ -12,6 +13,7 @@ import { User } from '../../../interfaces/user';
   styleUrl: './nav.component.css',
 })
 export class NavComponent implements OnInit {
+  endpointForImage = environment.endpointForImage;
   user! : User | null;
   page =  {
     title: "Mes qrcode",

@@ -69,7 +69,7 @@ export class AuthService {
   }
 
   update(update: any) {
-    return this.httpClient.post(this.endpoint + '/user/update', update);
+    return this.httpClient.post(this.endpoint + '/auth/update', update);
   }
 
   logout() {

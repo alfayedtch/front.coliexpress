@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
 import { User } from '../../../interfaces/user';
+import { environment } from '../../../../environment/environment';
 
 @Component({
   selector: 'app-side',
@@ -27,6 +28,8 @@ export class SideComponent implements OnInit {
       route: "/admin/profile"
     }
   ]
+
+    endpointForImage = environment.endpointForImage;
 
   constructor(
     private router:Router,
