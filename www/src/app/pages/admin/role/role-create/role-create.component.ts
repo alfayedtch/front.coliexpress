@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormArray, FormControl, Validators, FormsModule
 import { Router } from '@angular/router';
 import { PrivilegeService } from '../../../../services/privilege/privilege.service';
 import { RoleService } from '../../../../services/role/role.service';
+import { CompanyService } from '../../../../services/company/company.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -15,12 +16,14 @@ import { CommonModule } from '@angular/common';
 export class RoleCreateComponent implements OnInit {
   roleForm!: FormGroup;
   privilegesList: any[] = []; // Liste des privilèges depuis l'API
+  companiesList: any[] = []; // Liste des privilèges depuis l'API
   loading = false;
 
   constructor(
     private fb: FormBuilder,
     private roleService: RoleService,
     private privilegeService: PrivilegeService,
+    private companyService: CompanyService,
     private router: Router
   ) {}
 
@@ -28,16 +31,25 @@ export class RoleCreateComponent implements OnInit {
     this.roleForm = this.fb.group({
       libelle: ['', Validators.required],
       code: ['', Validators.required],
+      company_id: ['',Validators.required],
       privileges: this.fb.array([]) // Liste des privilèges sélectionnés
     });
 
     this.loadPrivileges();
+    this.loadCompanies();
   }
 
   // Charger les privilèges depuis l'API
   loadPrivileges() {
     this.privilegeService.getPrivileges().subscribe((response:any) => {
       this.privilegesList = response.privileges;
+    });
+  }
+
+   // Charger les compagnies depuis l'API
+   loadCompanies() {
+    this.companyService.getCompanies().subscribe((response:any) => {
+      this.companiesList = response.companies;
     });
   }
 
@@ -61,7 +73,9 @@ export class RoleCreateComponent implements OnInit {
     this.loading = true;
 
     this.roleService.createRole(this.roleForm.value).subscribe(
-      () => this.router.navigateByUrl('/admin/role'),
+      () => {
+        this.router.navigateByUrl('/admin/role')
+      },
       () => this.loading = false
     );
   }

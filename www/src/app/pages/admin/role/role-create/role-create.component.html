@@ -19,6 +19,15 @@
                        placeholder="Code du rôle">
               </div>
 
+              <div class="form-group">
+                <select formControlName="company_id" class="form-control form-control-user form-select">
+                  <option *ngFor="let company of companiesList" [value]="company.id">
+                    {{ company.name }}
+                  </option>
+                </select>
+              </div>
+
+
               <!-- Table des privilèges -->
               <div class="form-group">
                 <h5>Privilèges :</h5>

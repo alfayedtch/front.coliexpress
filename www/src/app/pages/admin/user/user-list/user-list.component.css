@@ -1,0 +1,12 @@
+.roles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
+  gap: 10px; /* Espacement entre les éléments */
+}
+
+.role-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+}

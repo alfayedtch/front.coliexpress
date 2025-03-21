@@ -92,6 +92,10 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/admin/privilege/privilege.routes').then(m => m.routes)
       },
       {
+        path: 'company',
+        loadChildren: () => import('./pages/admin/company/company.routes').then(m => m.routes)
+      },
+      {
         path: 'profile',
         component:ProfileComponent
       },

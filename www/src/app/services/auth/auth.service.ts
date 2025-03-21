@@ -31,7 +31,7 @@ export class AuthService {
     const body = {
       access_token : JSON.parse(localStorage.getItem('access_token') || 'null')
     }
-    return this.httpClient.post(this.endpoint + '/user/get', body);
+    return this.httpClient.post(this.endpoint + '/auth/get', body);
   }
 
   login(login: any) {

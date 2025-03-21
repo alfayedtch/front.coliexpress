@@ -56,7 +56,7 @@ constructor(
       error: (err) => {
         this.loading = false;
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Erreur, il se peut que l\'utilisateur existe déja' });
-        console.error('Erreur lors de la création du rôle :', err);
+        console.error('Erreur lors de la création du user :', err);
       },
       complete: () => {
         this.loading = false;

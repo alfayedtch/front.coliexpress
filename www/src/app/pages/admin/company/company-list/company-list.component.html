@@ -1,11 +1,11 @@
 <div class="card">
   <p-toast></p-toast>
   <p-table
-      [value]="roles"
-      [(selection)]="selectedRoles"
+      [value]="companies"
+      [(selection)]="selectedCompanies"
       dataKey="id"
       editMode="row"
-      [rows]="10"
+      [rows]="5"
       [rowsPerPageOptions]="[5, 10, 25, 50]"
       [paginator]="true"
       [tableStyle]="{'min-width': '50rem'}">
@@ -13,71 +13,43 @@
       <ng-template pTemplate="header">
           <tr>
               <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
-              <th>Code</th>
               <th>Name</th>
-              <th>Compagnie</th>
-              <th>Privileges</th>
+              <th>Créateur</th>
               <th>Action</th>
           </tr>
       </ng-template>
 
-      <ng-template pTemplate="body" let-editing="editing" let-ri="rowIndex" let-role>
-          <tr [pEditableRow]="role">
+      <ng-template pTemplate="body" let-editing="editing" let-ri="rowIndex" let-company>
+          <tr [pEditableRow]="company">
               <td>
-                  <p-tableCheckbox [value]="role" />
+                  <p-tableCheckbox [value]="company" />
               </td>
+
               <td>
                 <p-cellEditor>
                   <ng-template pTemplate="input">
-                      <input pInputText type="text" [(ngModel)]="role.code" />
+                      <input pInputText type="text" [(ngModel)]="company.name" />
                   </ng-template>
                   <ng-template pTemplate="output">
-                      {{role.code}}
-                  </ng-template>
-                </p-cellEditor>
-              </td>
-              <td>
-                <p-cellEditor>
-                  <ng-template pTemplate="input">
-                      <input pInputText type="text" [(ngModel)]="role.libelle" />
-                  </ng-template>
-                  <ng-template pTemplate="output">
-                    {{role.libelle}}
-                  </ng-template>
-                </p-cellEditor>
-              </td>
-              <td>
-                <p-cellEditor>
-                  <ng-template pTemplate="input">
-                      <!-- <input pInputText type="text" [(ngModel)]="role.company.name" /> -->
-                      {{role?.company?.name}}
-                  </ng-template>
-                  <ng-template pTemplate="output">
-                    {{role?.company?.name}}
+                    {{company.name}}
                   </ng-template>
                 </p-cellEditor>
               </td>
 
-              <!-- ✅ Section Privilèges en mode édition avec des checkboxes -->
               <td>
                 <p-cellEditor>
                   <ng-template pTemplate="input">
-                    <div class="privileges-grid">
-                      <div *ngFor="let privilege of allPrivileges" class="privilege-item">
-                        <input
-                          type="checkbox"
-                          [checked]="isPrivilegeSelected(privilege.id, role.privileges)"
-                          (change)="togglePrivilege(privilege.id, role.privileges)"
-                        />
-                        {{ privilege.libelle }}
-                      </div>
-                    </div>
+                      <!-- <input pInputText type="text" [(ngModel)]="company.name" /> -->
+                      {{company?.creator?.firstname}}
+                      {{company?.creator?.lastname}}
                   </ng-template>
                   <ng-template pTemplate="output">
-                    <span class="small">{{ role.privileges | privilegeConcat }}</span>
+                    {{company?.creator?.firstname}}
+                    {{company?.creator?.lastname}}
                   </ng-template>
                 </p-cellEditor>
               </td>
+
 
               <!-- ✅ Actions (éditer / valider / annuler) -->
               <td>
@@ -88,7 +60,7 @@
                         type="button"
                         pInitEditableRow
                         icon="pi pi-pencil"
-                        (click)="onRowEditInit(role)"
+                        (click)="onRowEditInit(company)"
                         class="p-button-rounded p-button-text">
                     </button>
                     <button
@@ -97,7 +69,7 @@
                         type="button"
                         pSaveEditableRow
                         icon="pi pi-check"
-                        (click)="onRowEditSave(role)"
+                        (click)="onRowEditSave(company)"
                         class="p-button-rounded p-button-text p-button-success mr-2">
                     </button>
                     <button
@@ -106,7 +78,7 @@
                         type="button"
                         pCancelEditableRow
                         icon="pi pi-times"
-                        (click)="onRowEditCancel(role, ri)"
+                        (click)="onRowEditCancel(company, ri)"
                         class="p-button-rounded p-button-text p-button-danger">
                     </button>
                 </div>

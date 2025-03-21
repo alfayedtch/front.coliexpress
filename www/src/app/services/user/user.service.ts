@@ -30,6 +30,6 @@ export class UserService {
     return this.httpClient.put(this.endpoint+'/user/update',userForm);
   }
   deleteUser(userForm:any){
-    return this.httpClient.delete(this.endpoint+'/user/update',userForm);
+    return this.httpClient.delete(this.endpoint+'/user/delete',userForm);
   }
 }

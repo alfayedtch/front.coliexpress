@@ -120,8 +120,5 @@ togglePrivilege(privilegeId: number | undefined, selectedPrivileges: any[]): voi
     const privilege = this.allPrivileges.find(p => p.id === privilegeId);
     if (privilege) selectedPrivileges.push(privilege); // ✅ Ajouter
   }
-  console.log(selectedPrivileges);
-  console.log(this.roles);
-  console.log(this.selectedRoles);
 }
 }

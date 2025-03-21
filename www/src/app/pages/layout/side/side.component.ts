@@ -47,6 +47,28 @@ export class SideComponent implements OnInit {
   initMenu(){
     this.menus =[
       {
+        title: "Compagnie",
+        route: "/admin/company",
+        icon: "",
+        isExpanded: false,
+        children: [
+          {
+            title: "Liste",
+            route: "/admin/company/list",
+            icon: "",
+            isExpanded: false,
+            children: []
+          },
+          {
+            title: "Ajout",
+            route: "/admin/company/create",
+            icon: "",
+            isExpanded: false,
+            children: []
+          }
+        ]
+      },
+      {
         title: "Utilisateurs",
         route: "/admin/user",
         icon: "",
