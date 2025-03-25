@@ -15,7 +15,7 @@
               <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
               <th>Code</th>
               <th>Name</th>
-              <th>Description</th>
+              <th>email</th>
               <th>Roles</th>
               <th>Action</th>
           </tr>
@@ -46,16 +46,18 @@
                   </ng-template>
                 </p-cellEditor>
               </td>
+
               <td>
                 <p-cellEditor>
                   <ng-template pTemplate="input">
-                      <input pInputText type="text" [(ngModel)]="user.description" />
+                      <input pInputText type="text" [(ngModel)]="user.email" />
                   </ng-template>
                   <ng-template pTemplate="output">
-                    {{user.description}}
+                    {{user.email}}
                   </ng-template>
                 </p-cellEditor>
               </td>
+
 
               <!-- ✅ Section Roles en mode édition avec des checkboxes -->
               <td>
