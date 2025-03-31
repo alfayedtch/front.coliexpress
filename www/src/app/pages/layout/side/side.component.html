@@ -15,42 +15,48 @@
         </a>
 
         <!-- Divider -->
-        <hr class="sidebar-divider my-0">
+        <hr class="sidebar-divider mt-4 my-0">
 
         <!-- Heading -->
         <div class="sidebar-heading">
-          Interface
+          Espace Admin
         </div>
 
-        <!-- Menu principal -->
-        <li class="nav-item" *ngFor="let menu of menus">
-          <a class="nav-link" (click)="toggleMenu(menu)" [class.collapsed]="!menu.isExpanded" data-toggle="collapse">
-            <i class="fas fa-fw fa-table"></i>
-            <span [routerLink]="menu.route">{{ menu.title }}</span>
-          </a>
+        <!-- Menu principal Admin -->
+        <ng-container *ngFor="let menu of menus">
+          <li class="nav-item" *ngIf="menu.authorisations && hasPrivilege(menu.authorisations)">
+            <a class="nav-link" (click)="toggleMenu(menu)" [class.collapsed]="!menu.isExpanded" data-toggle="collapse">
+              <i class="fas fa-fw fa-table"></i>
+              <span [routerLink]="menu.route">{{ menu.title }}</span>
+            </a>
 
-          <!-- Sous-menus -->
-          <div [ngClass]="{'collapse': !menu.isExpanded, 'collapse-menu': true}">
-            <ul class="navbar-nav ml-3">
-              <li class="nav-item" *ngFor="let child of menu.children">
-                <a [routerLink]="child.route" class="nav-link small" (click)="toggleMenu(child)">
-                  {{ child.title }}<i *ngIf="child.children.length > 0" class="fas fa-angle-right ml-2"></i>
-                </a>
+            <!-- Sous-menus -->
+            <div [ngClass]="{'collapse': !menu.isExpanded, 'collapse-menu': true}">
+              <ul class="navbar-nav ml-3">
+                <ng-container *ngFor="let child of menu.children">
+                  <li class="nav-item" *ngIf="child.authorisations && hasPrivilege(child.authorisations)">
+                    <a [routerLink]="child.route" class="nav-link small" (click)="toggleMenu(child)">
+                      {{ child.title }}<i *ngIf="child.children.length > 0" class="fas fa-angle-right ml-2"></i>
+                    </a>
 
-                <!-- Sous-sous-menus -->
-                <div [ngClass]="{'collapse': !child.isExpanded, 'collapse-menu': true}">
-                  <ul class="navbar-nav ml-4">
-                    <li class="nav-item" *ngFor="let subChild of child.children">
-                      <a [routerLink]="subChild.route" class="nav-link small" (click)="toggleMenu(subChild)">
-                        {{ subChild.title }}<i  *ngIf="subChild.children > 0" class="fas fa-angle-right ml-2"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </li>
+                    <!-- Sous-sous-menus -->
+                    <div [ngClass]="{'collapse': !child.isExpanded, 'collapse-menu': true}">
+                      <ul class="navbar-nav ml-4">
+                        <ng-container *ngFor="let subChild of child.children">
+                          <li class="nav-item" *ngIf="subChild.authorisations && hasPrivilege(subChild.authorisations)">
+                            <a [routerLink]="subChild.route" class="nav-link small" (click)="toggleMenu(subChild)">
+                              {{ subChild.title }}<i *ngIf="subChild.children.length > 0" class="fas fa-angle-right ml-2"></i>
+                            </a>
+                          </li>
+                        </ng-container>
+                      </ul>
+                    </div>
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+          </li>
+        </ng-container>
 
       </ul>
 
@@ -254,7 +260,6 @@
                           </div>
                       </li>
                        }
-
 
                   </ul>
 

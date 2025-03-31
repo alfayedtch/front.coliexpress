@@ -7,4 +7,6 @@ export interface User {
   phone?: number;
   birthdate?: Date;
   profile_picture?: string;
+  privileges?: [];
+  roles?: [];
 }

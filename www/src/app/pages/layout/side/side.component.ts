@@ -22,6 +22,8 @@ export class SideComponent implements OnInit {
 
   ];
 
+  clientMenus:any = [];
+
   inlineMenus = [
     {
       title: "Profile",
@@ -40,7 +42,7 @@ export class SideComponent implements OnInit {
   }
   ngOnInit(): void {
     this.authService.getUserByToken().subscribe(
-      (response: any) => {this.user = response.user; this.initMenu()},
+      (response: any) => {this.user = response.user; this.initMenu(); this.initClientMenu()},
       err => {
         this.logout();
       }
@@ -54,12 +56,14 @@ export class SideComponent implements OnInit {
         route: "/admin/company",
         icon: "",
         isExpanded: false,
+        authorisations: ['COMPANY_CREATE','COMPANY_READ','COMPANY_UPDATE','COMPANY_DELETE'],
         children: [
           {
             title: "Liste",
             route: "/admin/company/list",
             icon: "",
             isExpanded: false,
+            authorisations: ['COMPANY_READ'],
             children: []
           },
           {
@@ -67,6 +71,7 @@ export class SideComponent implements OnInit {
             route: "/admin/company/create",
             icon: "",
             isExpanded: false,
+            authorisations: ['COMPANY_CREATE'],
             children: []
           }
         ]
@@ -76,12 +81,14 @@ export class SideComponent implements OnInit {
         route: "/admin/user",
         icon: "",
         isExpanded: false,
+        authorisations: ['USER_CREATE','USER_READ','USER_UPDATE','USER_DELETE'],
         children: [
           {
             title: "Liste",
             route: "/admin/user/list",
             icon: "",
             isExpanded: false,
+            authorisations: ['USER_READ'],
             children: []
           },
           {
@@ -89,6 +96,7 @@ export class SideComponent implements OnInit {
             route: "/admin/user/create",
             icon: "",
             isExpanded: false,
+            authorisations: ['USER_CREATE'],
             children: []
           }
         ]
@@ -98,12 +106,14 @@ export class SideComponent implements OnInit {
         route: "/admin/role",
         icon: "",
         isExpanded: false,
+        authorisations: ['ROLE_CREATE','ROLE_READ','ROLE_UPDATE','ROLE_DELETE'],
         children: [
           {
             title: "Liste",
             route: "/admin/role/list",
             icon: "",
             isExpanded: false,
+            authorisations: ['ROLE_READ'],
             children: []
           },
           {
@@ -111,6 +121,7 @@ export class SideComponent implements OnInit {
             route: "/admin/role/create",
             icon: "",
             isExpanded: false,
+            authorisations: ['ROLE_CREATE'],
             children: []
           }
         ]
@@ -120,17 +131,41 @@ export class SideComponent implements OnInit {
         route: "/admin/privilege",
         icon: "",
         isExpanded: false,
+        authorisations: ['PRIVILEGE_CREATE','PRIVILEGE_CREATE_READ','PRIVILEGE_CREATE_UPDATE','PRIVILEGE_CREATE_DELETE'],
         children: [
           {
             title: "Liste",
             route: "/admin/privilege/list",
             icon: "",
             isExpanded: false,
+            authorisations: ['PRIVILEGE_CREATE_READ'],
             children: []
           },
           {
             title: "Ajout",
             route: "/admin/privilege/create",
+            icon: "",
+            isExpanded: false,
+            authorisations: ['PRIVILEGE_CREATE'],
+            children: []
+          }
+        ]
+      }
+
+    ]
+  }
+
+  initClientMenu(){
+    this.clientMenus =[
+      {
+        title: "Mon Dashboard Client",
+        route: "/custum/dashboard",
+        icon: "",
+        isExpanded: false,
+        children: [
+          {
+            title: "Mon espace",
+            route: "/admin/company/list",
             icon: "",
             isExpanded: false,
             children: []
@@ -155,6 +190,20 @@ export class SideComponent implements OnInit {
     this.authService.logout();
     this.user = null;
     this.router.navigateByUrl('login');
+  }
+
+
+  hasPrivilege(requiredAuthorisations: string[]): boolean {
+    if (!this.user || !this.user.privileges || !this.user.roles) {
+      return false;
+    }
+    const userRoles = this.user.roles.map((p: any) => p.code);
+    if(userRoles.includes('SUPER_ADMIN')){
+      return true;
+    }
+    const userPrivileges = this.user.privileges.map((p: any) => p.code);
+     // Assurez-vous que 'code' contient bien le privilège
+    return requiredAuthorisations.some(privilege => userPrivileges.includes(privilege));
   }
 
 
