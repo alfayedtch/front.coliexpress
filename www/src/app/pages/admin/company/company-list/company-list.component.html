@@ -64,6 +64,15 @@
                         class="p-button-rounded p-button-text">
                     </button>
                     <button
+                        *ngIf="!editing"
+                        pButton pRipple
+                        type="button"
+                        pInitEditableRow
+                        icon="pi pi-eye"
+                        (click)="onGettingClient(company)"
+                        class="p-button-rounded p-button-text">
+                    </button>
+                    <button
                         *ngIf="editing"
                         pButton pRipple
                         type="button"

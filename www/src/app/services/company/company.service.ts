@@ -22,6 +22,10 @@ export class CompanyService {
      return this.httpClient.get(this.endpoint+'/company/'+company.key);
  }
 
+    getCompanyClients(key:string){
+      return this.httpClient.get(this.endpoint+'/company/'+key+'/client');
+    }
+
    createCompany(companyForm:any){
      return this.httpClient.post(this.endpoint+'/company',companyForm);
    }

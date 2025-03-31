@@ -11,6 +11,7 @@ import { ToastModule } from 'primeng/toast';
 import { Company } from '../../../../interfaces/company';
 import { CompanyService } from '../../../../services/company/company.service';
 import { mergeMap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company-list',
@@ -30,7 +31,8 @@ export class CompanyListComponent implements OnInit {
 
   constructor(
     private companyService: CompanyService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ){
 
   }
@@ -74,6 +76,11 @@ onRowEditSave(company: Company) {
 onRowEditCancel(company: Company, index: number) {
     this.companies[index] = this.clonedCompanies[company.id as unknown as string];
     delete this.clonedCompanies[company.id as unknown as string];
+}
+
+
+onGettingClient(company: Company){
+  this.router.navigateByUrl('admin/company/'+ company.key +'/client')
 }
 
 }

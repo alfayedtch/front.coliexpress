@@ -12,6 +12,10 @@ export const routes: Routes =[
     component: CompanyListComponent
   },
   {
+    path:':key/client',
+    loadChildren: () => import('./company-client/company-client.routes').then(m => m.routes)
+  },
+  {
     path:'**',
     redirectTo:'list'
   },
