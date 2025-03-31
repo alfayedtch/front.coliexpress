@@ -28,6 +28,10 @@ export class SideComponent implements OnInit {
     {
       title: "Profile",
       route: "/admin/profile"
+    },
+    {
+      title: "Configuration",
+      route: "/admin/configuration"
     }
   ]
 

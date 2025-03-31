@@ -14,6 +14,7 @@ import { NavComponent } from './pages/layout/nav/nav.component';
 import { AboutComponent } from './pages/custum/about/about.component';
 import { ContactComponent } from './pages/custum/contact/contact.component';
 import { ServiceComponent } from './pages/custum/service/service.component';
+import { ConfigurationComponent } from './pages/admin/configuration/configuration.component';
 
 export const routes: Routes = [
   {
@@ -98,6 +99,10 @@ export const routes: Routes = [
       {
         path: 'profile',
         component:ProfileComponent
+      },
+      {
+        path: 'configuration',
+        component:ConfigurationComponent
       },
       {
         path:"**",

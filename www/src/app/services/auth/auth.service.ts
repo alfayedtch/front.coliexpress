@@ -78,4 +78,14 @@ export class AuthService {
     localStorage.removeItem('token_type');
     //this.currentUserSubject.next();
   }
+
+  updateConfig(update: any) {
+    console.log(update);
+    return this.httpClient.post(this.endpoint + '/configuration/update', update);
+  }
+
+  initConfig(){
+    return this.httpClient.get(this.endpoint + '/configuration');
+
+  }
 }
