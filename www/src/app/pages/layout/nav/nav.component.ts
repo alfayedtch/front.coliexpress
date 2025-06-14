@@ -4,6 +4,7 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
 import { User } from '../../../interfaces/user';
 import { environment } from '../../../../environment/environment';
+  import { version } from '../../../../..//package.json';
 
 @Component({
   selector: 'app-nav',
@@ -13,6 +14,7 @@ import { environment } from '../../../../environment/environment';
   styleUrl: './nav.component.css',
 })
 export class NavComponent implements OnInit {
+   version:string = version;
   endpointForImage = environment.endpointForImage;
   user! : User | null;
   page =  {

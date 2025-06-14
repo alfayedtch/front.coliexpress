@@ -12,6 +12,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     { url: endpoint + '/login', method: 'POST' },
     { url: endpoint + '/register', method: 'POST'  },
     { url: endpoint + '/forgot-password', method: 'POST'  },
+    { url: endpoint + '/reset-password', method: 'PUT'  },
+    { url: endpoint + '/track', method: 'POST'  },
   ];
   // console.log(req.url);
   // console.log(req.method);

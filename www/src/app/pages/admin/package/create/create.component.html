@@ -1,0 +1,39 @@
+<div class="container">
+
+  <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="p-5">
+                      <div class="text-center">
+                          <h1 class="h4 text-gray-900 mb-4">Creer une reservation de coli</h1>
+                      </div>
+                      <form class="user" [formGroup]="form" >
+
+                          <div class="form-group">
+                            <input formControlName="sender_email" type="email" class="form-control form-control-user"
+                                  placeholder="email du client">
+                        </div>
+                        <div class="form-group">
+                          <input formControlName="receiver_email" type="email" class="form-control form-control-user"
+                                placeholder="email du recepteur">
+                      </div>
+
+
+                    <div class="form-group">
+                      <input formControlName="weight" type="number" class="form-control form-control-user"
+                            placeholder="poids du coli">
+                  </div>
+
+                          <a (click)="createPackage()" class="btn btn-primary btn-user btn-block">
+                              Creer la requête
+                          </a>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div>

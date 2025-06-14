@@ -1,0 +1,54 @@
+<div class="container">
+
+  <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+           <div class="row ">
+            <div class="col d-flex justify-content-center">
+            </div>
+           </div>
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="p-5">
+                      <div class="text-center">
+                          <h1 class="h4 text-gray-900 mb-4">Update a package!</h1>
+                      </div>
+                      <form class="user" [formGroup]="form" >
+
+                          <div class="form-group">
+                              <input formControlName="sender_email" type="text" class="form-control form-control-user"
+                                  placeholder="Email de l'emmeteur">
+                          </div>
+
+                          <div class="form-group">
+                            <input formControlName="receiver_email" type="text" class="form-control form-control-user"
+                                placeholder="Email du destinataire">
+                        </div>
+
+                        <div class="form-group">
+                          <input formControlName="weight" type="numeric" class="form-control form-control-user"
+                              placeholder="poids du coli">
+                      </div>
+                      <div class="form-group">
+                        <select formControlName="status"  class="form-control form-control">
+                          <option value="WAITING">En ATTENTE</option>
+                          <option value="TRANSIT">EN TRANSIT</option>
+                          <option value="AVAILABLE">DISPONIBLE</option>
+                          <option value="DELIVERED">LIVREE</option>
+                          <option value="CANCEL">ANNULER</option>
+                        </select>
+                    </div>
+
+
+                          <a (click)="updatePackage()" class="btn btn-primary btn-user btn-block">
+                              Update package
+                          </a>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div>
+

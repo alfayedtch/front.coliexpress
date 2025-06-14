@@ -1,0 +1,38 @@
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  animation: blink 1.5s infinite;
+  display: inline-block;
+}
+
+.badge-success {
+  background-color: #28a745; /* vert */
+}
+
+.badge-warning {
+  background-color: #ffc107; /* jaune/orange */
+}
+
+.badge-pending {
+  background-color: #6f42c1; /* violet */
+}
+
+.badge-info {
+  background-color: #17a2b8; /* bleu clair */
+}
+
+.badge-danger {
+  background-color: #dc3545; /* rouge */
+}
+
+.badge-default {
+  background-color: #6c757d; /* gris */
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}

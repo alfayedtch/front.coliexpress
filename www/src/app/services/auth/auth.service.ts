@@ -86,6 +86,13 @@ export class AuthService {
 
   initConfig(){
     return this.httpClient.get(this.endpoint + '/configuration');
+  }
 
+  resetPassword(token:string,password:string){
+    const body = {
+      token:token,
+      password:password
+    }
+    return this.httpClient.put(this.endpoint + '/reset-password', body);
   }
 }

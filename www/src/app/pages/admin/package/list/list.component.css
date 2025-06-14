@@ -1,0 +1,20 @@
+.WAITING{
+  color:darkorange;
+}
+
+.PROGRESS{
+  color:aqua;
+}
+
+.CANCELED{
+  color: red;
+}
+
+.TRANSIT{
+  color:rgb(5, 106, 106);
+}
+
+.DELIVERED{
+  color:green
+}
+

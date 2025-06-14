@@ -4,7 +4,7 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
 import { User } from '../../../interfaces/user';
 import { environment } from '../../../../environment/environment';
-
+    import { version } from '../../../../../package.json';
 @Component({
   selector: 'app-side',
   standalone: true,
@@ -13,6 +13,7 @@ import { environment } from '../../../../environment/environment';
   styleUrl: './side.component.css'
 })
 export class SideComponent implements OnInit {
+  version:string = version;
   user! : User | null;
   page =  {
     title: "Mes qrcode",
@@ -131,7 +132,7 @@ export class SideComponent implements OnInit {
         ]
       },
       {
-        title: "Privileges",
+        title: "Privilegess",
         route: "/admin/privilege",
         icon: "",
         isExpanded: false,
@@ -151,6 +152,31 @@ export class SideComponent implements OnInit {
             icon: "",
             isExpanded: false,
             authorisations: ['PRIVILEGE_CREATE'],
+            children: []
+          }
+        ]
+      },
+      {
+        title: "Packages",
+        route: "/admin/package",
+        icon: "",
+        isExpanded: false,
+        authorisations: ['PACKAGE_CREATE','PACKAGE_READ','PACKAGE_UPDATE','PACKAGE_DELETE'],
+        children: [
+          {
+            title: "Liste",
+            route: "/admin/package/list",
+            icon: "",
+            isExpanded: false,
+            authorisations: ['PACKAGE_READ'],
+            children: []
+          },
+          {
+            title: "Ajout",
+            route: "/admin/package/create",
+            icon: "",
+            isExpanded: false,
+            authorisations: ['PACKAGE_CREATE'],
             children: []
           }
         ]

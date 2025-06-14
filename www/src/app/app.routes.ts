@@ -4,9 +4,6 @@ import { SideComponent } from './pages/layout/side/side.component';
 import { HomeComponent } from './pages/custum/home/home.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
-import { ListComponent } from './pages/admin/qrcode/list/list.component';
-import { CreateComponent } from './pages/admin/qrcode/create/create.component';
-import { EditComponent } from './pages/admin/qrcode/edit/edit.component';
 import { authGuard } from './guards/auth/auth.guard';
 import { connectedGuard } from './guards/auth/connected.guard';
 import { ProfileComponent } from './pages/admin/profile/profile.component';
@@ -15,8 +12,13 @@ import { AboutComponent } from './pages/custum/about/about.component';
 import { ContactComponent } from './pages/custum/contact/contact.component';
 import { ServiceComponent } from './pages/custum/service/service.component';
 import { ConfigurationComponent } from './pages/admin/configuration/configuration.component';
+import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
 
 export const routes: Routes = [
+  // {
+  //   path:'login',
+  //   component:LoginComponent
+  // },
   {
     path:'login',
     redirectTo:'custum/login'
@@ -27,7 +29,19 @@ export const routes: Routes = [
   },
   {
     path:'forgot-password',
-    redirectTo:'custum/forgot-password'
+    component:ForgotPasswordComponent
+  },
+  {
+    path:'reset-password/:token',
+    component:ResetPasswordComponent
+  },
+  {
+    path:'reset-password',
+    component:ResetPasswordComponent
+  },
+  {
+    path:'custum/home/:tracking_number',
+    component: HomeComponent
   },
 
   //custum route
@@ -36,6 +50,10 @@ export const routes: Routes = [
     component: NavComponent,
     children:[
       //public route
+      {
+        path:'home/:tracking_number',
+        component: HomeComponent
+      },
       {
         path: 'home',
         component: HomeComponent
@@ -97,6 +115,10 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/admin/company/company.routes').then(m => m.routes)
       },
       {
+        path: 'package',
+        loadChildren: () => import('./pages/admin/package/package.routes').then(m => m.routes)
+      },
+      {
         path: 'profile',
         component:ProfileComponent
       },
@@ -106,7 +128,7 @@ export const routes: Routes = [
       },
       {
         path:"**",
-        redirectTo: "role"
+        redirectTo: "package"
       }
     ]
   },
