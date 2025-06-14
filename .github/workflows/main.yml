@@ -5,8 +5,8 @@ on:
   workflow_dispatch:
 
 # On configure l'environnement des outils qui seront utilisés lors de l'execution de notre tâche
-env:
-  NODE_VERSION: 20.x
+# env:
+#   NODE_VERSION: 20.x
 
 jobs:
   build:
