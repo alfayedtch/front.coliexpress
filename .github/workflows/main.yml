@@ -28,7 +28,7 @@ jobs:
 
       - name: Copy .htaccess
         working-directory: ./www
-        run: cp .htaccess dist/www/
+        run: cp .htaccess dist/www/ && ls
         
       - name: Archive production artifact
         uses: actions/upload-artifact@v4
