@@ -44,7 +44,7 @@ jobs:
           name: deploiement
           path: ${{ vars.WORK_DIR }}
       - name: Sync files to hosting
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with: 
           server: ${{ secrets.ftp_host }}
           username: ${{ secrets.ftp_usr }}
