@@ -25,9 +25,13 @@ jobs:
       - name: Project - Build
         working-directory: ./www
         run: npm run build
+
+      - name: Copy .htaccess
+        working-directory: ./www
+        run: cp .htaccess dist/www/
         
       - name: Archive production artifact
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@v4
         with:
           name: deploiement
           path: ./www/dist/www/browser
